@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robotics Club Door Lock System</title>
+    <meta name="description" content="Door lock management system for the Robotics Club">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Add a simple favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-robot"></i>
+                <h1>Robotics Club</h1>
+            </div>
+            <h2>Door Lock System</h2>
+            <div class="status-indicator" id="serverStatus">
+                <i class="fas fa-circle"></i>
+                <span>Connected</span>
+            </div>
+        </header>
+
+        <!-- Member Entry Section -->
+        <section id="memberSection" class="card">
+            <div class="card-header">
+                <i class="fas fa-user"></i>
+                <h3>Member Entry</h3>
+            </div>
+            <div class="card-body">
+                <p class="description">Enter your registration number and Email to log your entry:</p>
+                <form id="memberForm">
+                    <div class="input-group">
+                        <i class="fas fa-id-card"></i>
+                        <input type="text" id="regNo" placeholder="Registration Number" required maxlength="20">
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Enter
+                    </button>
+                </form>
+                <div class="recent-entries" id="recentEntries" style="display: none;">
+                    <h4><i class="fas fa-history"></i> Recent Entries</h4>
+                    <div id="entriesList" class="entries-list"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Section -->
+        <section id="adminSection" class="card">
+            <div class="card-header">
+                <i class="fas fa-user-shield"></i>
+                <h3>Admin Panel</h3>
+            </div>
+            <div class="card-body">
+                <div id="adminLoginForm" class="admin-step active">
+                    <p class="description">Admin email verification:</p>
+                    <form id="adminVerifyForm">
+                        <div class="input-group">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="adminEmail" placeholder="Admin Email" required>
+                        </div>
+                        <button type="submit" class="btn btn-secondary">
+                            <i class="fas fa-paper-plane"></i>
+                            Send OTP
+                        </button>
+                    </form>
+                </div>
+
+                <div id="adminOtpForm" class="admin-step">
+                    <p class="description">Enter the OTP sent to your email:</p>
+                    <form id="otpForm">
+                        <div class="input-group">
+                            <i class="fas fa-key"></i>
+                            <input type="text" id="otpCode" placeholder="6-digit OTP" maxlength="6" required>
+                        </div>
+                        <button type="submit" class="btn btn-secondary">
+                            <i class="fas fa-check"></i>
+                            Verify OTP
+                        </button>
+                        <button type="button" id="backToEmail" class="btn btn-outline">
+                            <i class="fas fa-arrow-left"></i>
+                            Back
+                        </button>
+                    </form>
+                </div>
+
+                <div id="adminActions" class="admin-step">
+                    <p class="description">Admin Actions:</p>
+                    <div class="admin-buttons">
+                        <button id="updatePasswordsBtn" class="btn btn-warning">
+                            <i class="fas fa-sync-alt"></i>
+                            Update Passwords
+                        </button>
+                        <button id="changePasswordsBtn" class="btn btn-danger">
+                            <i class="fas fa-exchange-alt"></i>
+                            Change All Passwords
+                        </button>
+                        <button id="logoutBtn" class="btn btn-outline">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Logout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Current Passwords Display -->
+        <section id="passwordsSection" class="card" style="display: none;">
+            <div class="card-header">
+                <i class="fas fa-list"></i>
+                <h3>Current Passwords</h3>
+            </div>
+            <div class="card-body">
+                <div id="passwordsList" class="passwords-container">
+                    <!-- Passwords will be displayed here -->
+                </div>
+                <button id="closePasswordsBtn" class="btn btn-outline">
+                    <i class="fas fa-times"></i>
+                    Close
+                </button>
+            </div>
+        </section>
+
+        <!-- Status Messages -->
+        <div id="statusMessage" class="status-message"></div>
+
+        <!-- Loading Overlay -->
+        <div id="loadingOverlay" class="loading-overlay">
+            <div class="spinner"></div>
+            <p>Processing...</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 Robotics Club. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
